@@ -21,4 +21,6 @@ The Wi-Fi Analyzer App provides comprehensive, real-time monitoring and analysis
 
 To get started with the Real-time Wi-Fi Signal Monitoring App, simply clone this repository, install the necessary dependencies, and run the application.
 
+![screenshot](https://github.com/abhishekbardolia/WifiSignalMonitor/assets/21007272/85630456-393c-4d50-8074-3923eb6e6db7)
+
 
