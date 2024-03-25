@@ -23,6 +23,9 @@ class HomePage extends StatelessWidget {
               return AllWifiDetailWidget(data:snapshot.data);
             }
 
+            if(snapshot.hasError){
+              return Text(snapshot.error.toString());
+            }
             return Container();
           }
         )

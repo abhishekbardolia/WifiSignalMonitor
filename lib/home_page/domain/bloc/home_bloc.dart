@@ -7,6 +7,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/services.dart';
 import 'package:meta/meta.dart';
 
+
 import '../../data/model/error/failure.dart';
 import '../../data/model/wifi_details_model.dart';
 import '../../usecase/get_wifi_analyser_usecase.dart';
@@ -58,9 +59,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       final parsedJson = json.decode(event);
       final wiFiDetails =
       WifiDetailsModel.fromJson(parsedJson);
-      //
       _wifiDetailController.add(wiFiDetails);
-      print("_onEvent ${parsedJson.toString()}");
+      print("_onEvent ${parsedJson['WifiAnalyser'].toString()}");
     }
   }
 

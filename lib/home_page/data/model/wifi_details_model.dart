@@ -291,9 +291,7 @@ class WiFiSecurity {
     _capabilities = json['capabilities'];
   }
   String? _capabilities;
-  List<dynamic>? _securityTypes;
 WiFiSecurity copyWith({  String? capabilities,
-  List<dynamic>? securityTypes,
 }) => WiFiSecurity(  capabilities: capabilities ?? _capabilities,
 );
   String? get capabilities => _capabilities;

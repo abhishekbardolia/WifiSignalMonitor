@@ -9,9 +9,40 @@ import 'package:wifi_signal_monitor/util/app_colors.dart';
 import '../../home_page/data/model/strength.dart';
 import '../../home_page/presentation/home_page.dart';
 
-class SplashScreen extends StatelessWidget {
-  final SplashBloc _splashBloc = injector<SplashBloc>();
+class SplashScreen extends StatefulWidget {
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
 
+class _SplashScreenState extends State<SplashScreen>  with WidgetsBindingObserver {
+  final SplashBloc _splashBloc = injector<SplashBloc>();
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    // Remove the observer
+    WidgetsBinding.instance.removeObserver(this);
+
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+
+    if(state==AppLifecycleState.resumed){
+      Future.delayed(Duration(seconds: 1),(){
+        _splashBloc..add(NavigationEvent());
+      });
+
+    }
+
+  }
   @override
   Widget build(BuildContext context) {
     return BlocProvider.value(
@@ -21,7 +52,11 @@ class SplashScreen extends StatelessWidget {
           if (state is ReadyToNavigate) {
             PermissionStatus status = await Permission.location.request();
             if (status.isGranted) {
-              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => HomePage()));
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => HomePage()),
+                    (Route<dynamic> route) => false, // This condition means to remove all the routes below the new route.
+              );
             } else if (status.isPermanentlyDenied) {
               final bool? opened = await openAppSettings();
               if (opened != true) {
