@@ -21,4 +21,6 @@ The Wi-Fi Analyzer App provides comprehensive, real-time monitoring and analysis
 
 To get started with the Real-time Wi-Fi Signal Monitoring App, simply clone this repository, install the necessary dependencies, and run the application.
 
+Ensure that all required permissions are granted and the GPS location is enabled.
+
 
